@@ -1,0 +1,13 @@
+@use "mixins.scss" as *;
+
+.wrapper{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    @include flex_column();
+
+    & form{
+        max-width: 20%;
+        width: 100%;
+    }
+}
