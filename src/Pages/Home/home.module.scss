@@ -1,1 +1,10 @@
 @use "src/mixins.scss" as *;
+
+.wrapper{
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    @include row_centered();
+    gap: 50px;
+    overflow-y: hidden;
+}
