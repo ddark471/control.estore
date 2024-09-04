@@ -15,7 +15,7 @@ const ProductsCart:React.FC<product> = ({id, title, category, description, image
             </div>
             <div className={style.details__sub}>
                 <span className={style.sub__rating}>rating: </span>
-                <span className={style.sub__text}>{rating.rate}</span>
+                <span className={style.sub__text}>{rating?.rate}</span>
             </div>
         </div>
     </div>
