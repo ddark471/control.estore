@@ -1,0 +1,44 @@
+@use "/src/mixins.scss" as *;
+
+.wrapper{
+    max-width: 23%;
+    width: 100%;
+    height: 300px;
+    @include  flex_column();
+    gap: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid grey;
+    border-radius: 20px;
+}
+
+.wrapper__img{
+    width: 100%;
+    height: 50%;
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.wrapper__details{
+    max-width: 100%;
+    width: 100%;
+    height:40%;
+    @include flex_column();
+    gap: 10px;
+}
+
+.details__main{
+    max-width: 100%;
+    width: 100%;
+    @include flex_column(); 
+    gap: 10px;
+}
+
+.details__title{
+    font-size: 15px;
+    font-weight: 500;
+
+}
