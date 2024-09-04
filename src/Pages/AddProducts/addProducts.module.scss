@@ -1,0 +1,23 @@
+@use "/src/mixins.scss" as *;
+
+.wrapper{
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    @include row_centered();
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper__main{
+    max-width: 80%;
+    width: 100%;
+    height: 100%;
+    @include column_centered();
+    gap: 10px;
+}
+
+.main__input{
+    max-width: 30%;
+    width: 100% ;
+}
