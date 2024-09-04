@@ -1,0 +1,27 @@
+@use "/src/mixins.scss" as *;
+
+.sidebar{
+    max-width: 300px;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    @include row_centered();
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.sidebar__main{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    @include column_centered();
+    gap: 10px;
+
+    & a{
+        text-decoration: none;
+        outline: none;
+    }
+    & a:visited{
+        color: black;
+    }
+}
