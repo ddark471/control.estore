@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react'
 import Sidebar from 'components/Sidebar'
-import { Button, Input } from 'antd'
+import { Button, Input, message } from 'antd'
 import TextArea from 'antd/es/input/TextArea';
 import { addProducts } from 'services/addProducts';
 import { product } from 'interfaces';
@@ -51,12 +51,17 @@ const AddProducts = () => {
       };
 
     const handleSubmit = async () => {
+        if(Object.values(newCart).some(field => field === "" || 0)){
+            message.warning("Please fill all the fields");
+            return -1;
+        }
         try{
             const response = await addProducts(newCart);
             setNewCart({title: "", price: 0, image: "", category: "", description: ""})
             setProducts(response)
         }   catch(err){
             console.error(err)
+            message.error(`${err}`)
         }
         
     } 
@@ -67,10 +72,10 @@ const AddProducts = () => {
         <div className={style.wrapper__main}>
             <h1>Add new product</h1>
             <div className={style.main__input}>
-                <Input placeholder='Enter Product Name' value={newCart.title} onChange={e => handleChange("title" ,e, setNewCart)}/>
+                <Input placeholder='Enter Product Name' required={true} value={newCart.title} onChange={e => handleChange("title" ,e, setNewCart)}/>
             </div>
             <div className={style.main__input}>
-                <Input placeholder='Enter price' type='number' value={newCart.price} onChange={e => handleChange("price", e, setNewCart)}/>
+                <Input placeholder='Enter price' type='number' required={true} value={newCart.price} onChange={e => handleChange("price", e, setNewCart)}/>
             </div>
             <label className={style.main__imageInput}>
                 <input 
@@ -78,6 +83,7 @@ const AddProducts = () => {
                     accept='image/*' 
                     className={style.imageInput}   
                     onChange={e => handleImageChange(e)}
+                    required={true} 
                 />
                 {
                     newCart.image && (
@@ -88,7 +94,11 @@ const AddProducts = () => {
                 }
             </label>
             <div className={style.main__input}>
-                <Input placeholder='Enter category' value={newCart.category} onChange={e => handleChange("category", e, setNewCart)}/>
+                <Input 
+                    placeholder='Enter category' 
+                    value={newCart.category}
+                    required={true} 
+                    onChange={e => handleChange("category", e, setNewCart)}/>
             </div>
             <div className={style.main__input}>
                 <TextArea 
@@ -96,14 +106,14 @@ const AddProducts = () => {
                     value={newCart.description} 
                     onChange={e => handleChange("description", e, setNewCart)}
                     style={{resize: "none"}}
+                    required={true} 
                 />
             </div>
             <div className={style.main__button}>
                 <Button type='primary' onClick={handleSubmit}>Submit Product</Button>
             </div>
         </div>
-        {
-            products && <ProductsCart 
+        {products && <ProductsCart 
                 id={products.id} 
                 title={products.title}
                 category={products.category}
