@@ -37,6 +37,7 @@ const LoginInput: React.FC<Iprops> = ({ prefix, placeholder, name, handleChange 
                 style={{ padding: "0" }}
                 name={name}
                 onChange={handleChange}
+                autoComplete='off'
             />
         </label>
     );

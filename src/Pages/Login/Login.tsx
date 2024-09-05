@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import style from './login.module.scss'
@@ -18,14 +18,14 @@ const Login = () => {
       .max(50, "Password must not be longer than 50"),
   });
 
-  const { mutate } = useLogIn();
+  const { mutate, data } = useLogIn();
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = useCallback((values: any) => {
     mutate({
       username: values.login,
       password: values.password
     });
-  }
+  }, [mutate])
 
   const formik = useFormik({
     initialValues: {
